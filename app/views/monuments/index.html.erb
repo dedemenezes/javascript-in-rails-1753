@@ -5,23 +5,23 @@
 
   <h1>Monuments</h1>
 
-  <div id="monuments">
-    <% @monuments.each do |monument| %>
-      <%= render monument %>
-      <p>
-        <%= link_to "Show this monument", monument %>
-      </p>
-    <% end %>
+  <div data-controller="insert-in-list">
+    <div id="monuments" data-insert-in-list-target="items">
+      <% @monuments.each do |monument| %>
+        <%= render monument %>
+      <% end %>
+    </div>
+
+    <div data-controller="form">
+      <button class="btn btn-primary" data-action="click->form#display">Add a Monument</button>
+
+      <div class="d-none" data-form-target="container">
+
+        <%= render 'form', monument: @monument %>
+      </div>
+    </div>
   </div>
 
   <%#= link_to "New monument", new_monument_path %>
-  <div data-controller="form">
-    <button class="btn btn-primary" data-action="click->form#display">Add a Monument</button>
-
-    <div class="d-none" data-form-target="container">
-    <%# 1st sstep %>
-      <%= render 'form', monument: @monument %>
-    </div>
-  </div>
 
 </div>

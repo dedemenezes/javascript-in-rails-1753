@@ -24,10 +24,15 @@ class MonumentsController < ApplicationController
   def create
     @monument = Monument.new(monument_params)
 
-    if @monument.save
-      redirect_to @monument, notice: "Monument was successfully created."
-    else
-      render :new, status: :unprocessable_entity
+    # UPdate so it can respond with a JSON
+    respond_to do |format|
+      if @monument.save
+        format.html { redirect_to @monument, notice: "Monument was successfully created." }
+        format.json # it will follow the NATURAL rails Flow -> it will look for a json file in the views to display
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json # it will follow the NATURAL rails Flow -> it will look for a json file in the views to display
+      end
     end
   end
 

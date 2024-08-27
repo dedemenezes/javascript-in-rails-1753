@@ -4,6 +4,7 @@ class MonumentsController < ApplicationController
   # GET /monuments
   def index
     @monuments = Monument.all
+    @monument = Monument.new
   end
 
   # GET /monuments/1

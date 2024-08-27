@@ -1,16 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Monuments" %>
+  <% content_for :title, "Monuments" %>
 
-<h1>Monuments</h1>
+  <h1>Monuments</h1>
 
-<div id="monuments">
-  <% @monuments.each do |monument| %>
-    <%= render monument %>
-    <p>
-      <%= link_to "Show this monument", monument %>
-    </p>
-  <% end %>
+  <div id="monuments">
+    <% @monuments.each do |monument| %>
+      <%= render monument %>
+      <p>
+        <%= link_to "Show this monument", monument %>
+      </p>
+    <% end %>
+  </div>
+
+  <%#= link_to "New monument", new_monument_path %>
+  <div data-controller="form">
+    <button class="btn btn-primary" data-action="click->form#display">Add a Monument</button>
+
+    <div class="d-none" data-form-target="container">
+    <%# 1st sstep %>
+      <%= render 'form', monument: @monument %>
+    </div>
+  </div>
+
 </div>
-
-<%= link_to "New monument", new_monument_path %>
